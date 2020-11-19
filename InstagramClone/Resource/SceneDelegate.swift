@@ -5,6 +5,7 @@
 //  Created by ㅇ오ㅇ on 2020/11/18.
 //
 
+import Firebase
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -14,6 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        FirebaseApp.configure()
         
         let tabBar = UITabBarController()
         let home = UINavigationController(rootViewController: HomeViewController())
