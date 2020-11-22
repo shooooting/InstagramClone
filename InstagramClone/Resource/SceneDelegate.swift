@@ -26,13 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profile = UINavigationController(rootViewController: ProfileViewController())
         
         home.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "house"), tag: 0)
-        explore.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "globe"), tag: 1)
+        explore.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "magnifyingglass"), tag: 1)
         camera.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "plus"), tag: 2)
-        noti.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "bell"), tag: 3)
+        noti.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "heart"), tag: 3)
         profile.tabBarItem = UITabBarItem(title: .none, image: UIImage(systemName: "person"), tag: 4)
         
-        UITabBar.appearance().tintColor = .black
         tabBar.viewControllers = [home, explore, camera, noti, profile]
+        UITabBar.appearance().tintColor = UIColor.label
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = tabBar

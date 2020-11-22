@@ -109,6 +109,7 @@ class RegistrationViewController: UIViewController {
         AuthManager.shared.registerNewUser(username: username, email: email, password: password) { registered in
             if registered {
                 // good to go
+                self.dismiss(animated: true)
             } else {
                 // failed
             }
