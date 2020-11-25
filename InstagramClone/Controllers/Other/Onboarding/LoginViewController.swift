@@ -219,7 +219,7 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapPrivacyButton() {
-        guard let url = URL(string: "https://help.instagram.com/519522125107875") else {
+        guard let url = URL(string: "https₩://help.instagram.com/519522125107875") else {
             return
         }
         let vc = SFSafariViewController(url: url)

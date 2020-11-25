@@ -18,7 +18,6 @@ public class AuthManager {
         /*
          - check if username is available
          - check if email is available
-         
          */
         DataBaseManager.shared.canCreateNewUser(with: email, username: username) { canCreate in
             if canCreate {
@@ -28,7 +27,7 @@ public class AuthManager {
                  */
                 Auth.auth().createUser(withEmail: email, password: password) { result, error in
                     if error == nil, result != nil {
-                        completion(false )
+                        completion(false)
                         return
                     }
                     
@@ -38,19 +37,16 @@ public class AuthManager {
                             completion(true)
                             return
                         } else {
-                            
                             // Failed to insert to database
                             completion(false)
                             return
                         }
                     }
-                    
                 }
             } else {
                 completion(false)
             }
         }
-        
     }
     
     public func loginUser(username: String?, email: String?, password: String, completion: @escaping (Bool) -> Void) {
