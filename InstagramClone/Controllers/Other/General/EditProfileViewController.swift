@@ -21,7 +21,7 @@ class EditProfileViewController: UIViewController {
         return tableView
     }()
     
-    private let models = [[EditProfileFormModel]]()
+    private var models = [[EditProfileFormModel]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +34,12 @@ class EditProfileViewController: UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(didTapCancel))
-        
+        configureModels()
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.tableHeaderView = createTableHeaderView()
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,15 +57,17 @@ class EditProfileViewController: UIViewController {
                                              placeHolder: "Enter \(label)...", value: nil)
             section1.append(model)
         }
+        models.append(section1)
         
         // email, phone, gender
         let section2Labels = ["Email", "Phone", "Gender"]
         var section2 = [EditProfileFormModel]()
-        for label in section1Labels {
+        for label in section2Labels {
             let model = EditProfileFormModel(label: label,
                                              placeHolder: "Enter \(label)...", value: nil)
             section2.append(model)
         }
+        models.append(section2)
     }
     
     private func createTableHeaderView() -> UIView {
@@ -85,7 +89,6 @@ class EditProfileViewController: UIViewController {
         profilePhotoButton.layer.borderWidth = 1
         profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
         return header
-        
     }
     
     @objc
@@ -93,12 +96,14 @@ class EditProfileViewController: UIViewController {
         
     }
     
-    @objc private func didTapSave() {
-        
+    @objc
+    private func didTapSave() {
+        dismiss(animated: true, completion: nil)
     }
     
-    @objc private func didTapCancel() {
-        
+    @objc
+    private func didTapCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func didTapChangeProfilePicture() {
@@ -136,15 +141,25 @@ extension EditProfileViewController: UITableViewDataSource {
         let model = models[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as! FormTableViewCell
         cell.configure(with: model)
+        cell.delegate = self
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard section == 1 else {
             return nil
         }
         
         return "Private Information"
     }
+}
+
+extension EditProfileViewController: FormTableViewCellDelegate {
+    func formTableViewCell(_ cell: FormTableViewCell, didUpdateField updateModel: EditProfileFormModel?) {
+        // update the model
+        
+        print(updateModel?.value ?? "nil")
+    }
+    
     
 }
