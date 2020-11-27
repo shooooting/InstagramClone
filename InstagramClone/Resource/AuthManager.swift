@@ -62,7 +62,13 @@ public class AuthManager {
             
         } else if let username = username {
             // username log in
-            print(username)
+            Auth.auth().signIn(withEmail: username, password: password) { authResult, error in
+                guard authResult != nil, error == nil else {
+                    completion(false)
+                    return
+                }
+                completion(true)
+            }
         }
     }
     
