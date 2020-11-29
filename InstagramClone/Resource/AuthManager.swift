@@ -54,21 +54,15 @@ public class AuthManager {
             // email log in
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 guard authResult != nil, error == nil else {
-                    completion(false)
+                    completion(true)
                     return
                 }
-                completion(true)
+                completion(false)
             }
             
-        } else if let username = username {
+        } else {
             // username log in
-            Auth.auth().signIn(withEmail: username, password: password) { authResult, error in
-                guard authResult != nil, error == nil else {
-                    completion(false)
-                    return
-                }
-                completion(true)
-            }
+            
         }
     }
     

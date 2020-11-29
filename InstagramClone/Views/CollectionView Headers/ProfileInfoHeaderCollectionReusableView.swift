@@ -12,14 +12,13 @@ protocol ProfileInfoHeaderCollectionReusableViewDelegate: AnyObject {
     func profileHeaderDidTapFollowersButton(_ header: ProfileInfoHeaderCollectionReusableView)
     func profileHeaderDidTapFollowingButton(_ header: ProfileInfoHeaderCollectionReusableView)
     func profileHeaderDidTapEditProfileButton(_ header: ProfileInfoHeaderCollectionReusableView)
-    
 }
 
 class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     
     static let identifier = "ProfileInfoHeaderCollectionReusableView"
     
-    weak var delegate: ProfileInfoHeaderCollectionReusableViewDelegate?
+    public weak var delegate: ProfileInfoHeaderCollectionReusableViewDelegate?
     
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
