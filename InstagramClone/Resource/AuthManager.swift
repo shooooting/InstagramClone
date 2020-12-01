@@ -27,7 +27,7 @@ public class AuthManager {
                  */
                 Auth.auth().createUser(withEmail: email, password: password) { result, error in
                     if error == nil, result != nil {
-                        completion(false)
+                        completion(true)
                         return
                     }
                     
